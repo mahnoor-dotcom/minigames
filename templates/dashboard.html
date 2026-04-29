@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Multi-Game Platform{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Welcome, {{ username }}! 🎮</h1>
+        <p class="subtitle">Choose a game to play and earn scores!</p>
+    </div>
+
+    <div class="games-grid">
+        <!-- Tic Tac Toe Game -->
+        <a href="/games/tic_tac_toe" class="game-card">
+            <div class="game-card-content">
+                <div class="game-icon">⭕</div>
+                <h2>Tic Tac Toe</h2>
+                <p class="game-description">Challenge the AI in this classic game. Win to earn points!</p>
+                <div class="game-stats">
+                    <span class="badge">Strategy</span>
+                    <span class="badge">1v1</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Number Puzzle Game -->
+        <a href="/games/number_puzzle" class="game-card">
+            <div class="game-card-content">
+                <div class="game-icon">🔢</div>
+                <h2>Number Puzzle</h2>
+                <p class="game-description">Slide tiles to arrange numbers. Beat your best time!</p>
+                <div class="game-stats">
+                    <span class="badge">Puzzle</span>
+                    <span class="badge">Brain Training</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Car Game -->
+        <a href="/games/car_game" class="game-card">
+            <div class="game-card-content">
+                <div class="game-icon">🚗</div>
+                <h2>Car Game</h2>
+                <p class="game-description">Drive and collect items. Avoid obstacles to score high!</p>
+                <div class="game-stats">
+                    <span class="badge">Action</span>
+                    <span class="badge">reflexes</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="dashboard-info">
+        <div class="info-box">
+            <h3>📊 How It Works</h3>
+            <ul>
+                <li>Select any game from above</li>
+                <li>Play and try to get the highest score</li>
+                <li>Your score is automatically saved</li>
+                <li>Check the leaderboard to see how you rank against other players</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🏆 Leaderboard</h3>
+            <p>Compete with other players and climb the leaderboard!</p>
+            <a href="/leaderboard" class="btn btn-secondary">View Top Scores</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

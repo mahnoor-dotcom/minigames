@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Multi-Game Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">🎮 Multi-Game Platform</h1>
+            <p class="login-subtitle">Play, Score, Compete</p>
+            
+            <form method="POST" action="/login" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Enter your username"
+                        required
+                        autofocus
+                    >
+                </div>
+                
+                {% if error %}
+                <div class="alert alert-error">
+                    {{ error }}
+                </div>
+                {% endif %}
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    Login & Play
+                </button>
+            </form>
+            
+            <div class="login-info">
+                <p>📝 New here? Just enter any username to get started!</p>
+                <p>✨ Username must be alphanumeric (and underscore allowed)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

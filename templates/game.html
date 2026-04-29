@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ game_name|replace('_', ' ')|title }} - Multi-Game Platform{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <div class="game-header">
+        <h1 id="gameTitle"></h1>
+        <div class="game-info">
+            <span>Player: <strong>{{ username }}</strong></span>
+            <span>Score: <strong id="currentScore">0</strong></span>
+        </div>
+    </div>
+
+    <!-- Game Content Area -->
+    <div id="gameContent" class="game-content"></div>
+
+    <!-- Score Submission Section -->
+    <div class="score-submission">
+        <div id="scoreMessage" class="message" style="display: none;"></div>
+        <button id="submitScoreBtn" class="btn btn-primary" style="display: none;">
+            Submit Score 📤
+        </button>
+        <button id="playAgainBtn" class="btn btn-secondary" style="display: none;">
+            Play Again 🔄
+        </button>
+        <a href="/" class="btn btn-tertiary">Back to Dashboard</a>
+    </div>
+</div>
+
+<!-- Hidden input to pass game name and username to JavaScript -->
+<script>
+    const GAME_NAME = "{{ game_name }}";
+    const USERNAME = "{{ username }}";
+    const GAME_DISPLAY_NAME = {
+        'tic_tac_toe': 'Tic Tac Toe',
+        'number_puzzle': 'Number Puzzle',
+        'car_game': 'Car Game'
+    };
+    
+    // Set the game title
+    document.getElementById('gameTitle').textContent = GAME_DISPLAY_NAME[GAME_NAME] || 'Game';
+</script>
+
+<!-- Load appropriate game script based on game_name -->
+{% if game_name == 'tic_tac_toe' %}
+<script src="{{ url_for('static', filename='js/tic-tac-toe.js') }}"></script>
+{% elif game_name == 'number_puzzle' %}
+<script src="{{ url_for('static', filename='js/number-puzzle.js') }}"></script>
+{% elif game_name == 'car_game' %}
+<script src="{{ url_for('static', filename='js/car-game.js') }}"></script>
+{% endif %}
+
+<!-- Common API functions -->
+<script src="{{ url_for('static', filename='js/api.js') }}"></script>
+{% endblock %}

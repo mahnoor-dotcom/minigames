@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard - Multi-Game Platform{% endblock %}
+
+{% block content %}
+<div class="leaderboard-container">
+    <div class="leaderboard-header">
+        <h1>🏆 Leaderboard</h1>
+        <p class="subtitle">Top scores across all games</p>
+    </div>
+
+    <div class="leaderboard-content">
+        {% for game_name, scores in leaderboard_data.items() %}
+        <div class="leaderboard-game">
+            <h2 class="game-name">
+                {% if game_name == 'Tic Tac Toe' %}
+                ⭕ {% elif game_name == 'Number Puzzle' %}
+                🔢 {% elif game_name == 'Car Game' %}
+                🚗 {% endif %}
+                {{ game_name }}
+            </h2>
+
+            {% if scores %}
+            <div class="leaderboard-table">
+                <div class="table-header">
+                    <div class="rank">#</div>
+                    <div class="player">Player</div>
+                    <div class="score">Score</div>
+                    <div class="date">Date</div>
+                </div>
+
+                {% for score in scores %}
+                <div class="table-row {% if idx == 0 %}top-score{% endif %}">
+                    <div class="rank">
+                        {% if idx == 0 %}🥇
+                        {% elif idx == 1 %}🥈
+                        {% elif idx == 2 %}🥉
+                        {% else %}
+                        {{ loop.index }}
+                        {% endif %}
+                    </div>
+                    <div class="player">{{ score.username }}</div>
+                    <div class="score">
+                        <strong>{{ score.score }}</strong>
+                    </div>
+                    <div class="date">{{ score.timestamp }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-scores">
+                <p>No scores yet. Be the first to play!</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="leaderboard-footer">
+        <a href="/" class="btn btn-primary">Play Games 🎮</a>
+    </div>
+</div>
+{% endblock %}
